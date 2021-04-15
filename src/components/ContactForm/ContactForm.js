@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import { v4 as uuidv4 } from 'uuid';
 
 const INITIAL_STATE = {
@@ -75,4 +77,8 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapDispatchToProps = dispatch => ({
+  onAdd: addedContact => dispatch(phonebookActions.addContact(addedContact)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);

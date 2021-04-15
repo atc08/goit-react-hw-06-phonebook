@@ -5,31 +5,31 @@ import Filter from './components/Filter';
 
 class App extends Component {
   state = {
-    contacts: [],
-    filter: '',
+    // contacts: [],
+    // filter: '',
   };
 
-  componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
+  // componentDidMount() {
+  //   const contacts = localStorage.getItem('contacts');
+  //   const parsedContacts = JSON.parse(contacts);
 
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
+  //   if (parsedContacts) {
+  //     this.setState({ contacts: parsedContacts });
+  //   }
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { contacts } = this.state;
-    if (contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { contacts } = this.state;
+  //   if (contacts !== prevState.contacts) {
+  //     localStorage.setItem('contacts', JSON.stringify(contacts));
+  //   }
+  // }
 
-  handleAddContact = addedContact => {
-    this.setState(({ contacts }) => ({
-      contacts: [addedContact, ...contacts],
-    }));
-  };
+  // handleAddContact = addedContact => {
+  //   this.setState(({ contacts }) => ({
+  //     contacts: [addedContact, ...contacts],
+  //   }));
+  // };
 
   handleCheckUniqueContact = number => {
     const { contacts } = this.state;
@@ -59,23 +59,23 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
-    const filterContacts = this.getFilteredContact();
+    // const { filter } = this.state;
+    // const filterContacts = this.getFilteredContact();
 
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm
+        {/* <ContactForm
           onAdd={this.handleAddContact}
           onCheckUniqueContact={this.handleCheckUniqueContact}
-        />
+        /> */}
 
         <h2>Contacts</h2>
-        <Filter filter={filter} onchangeFilter={this.handleChangeFilter} />
-        <ContactList
+        {/* <Filter filter={filter} onchangeFilter={this.handleChangeFilter} /> */}
+        {/* <ContactList
           contacts={filterContacts}
           ondeleteContact={this.handleDeleteContact}
-        />
+        /> */}
       </div>
     );
   }
