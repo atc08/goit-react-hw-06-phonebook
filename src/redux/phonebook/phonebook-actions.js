@@ -10,4 +10,14 @@ const addContact = addedContact => ({
   },
 });
 
-export default { addContact };
+const deleteContact = contactId => ({
+  type: types.DELETE,
+  payload: contactId,
+});
+
+const changeFilter = filter => ({
+  type: types.CHANGE_FILTER,
+  payload: filter,
+});
+
+export default { addContact, deleteContact, changeFilter };

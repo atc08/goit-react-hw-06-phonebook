@@ -40,23 +40,23 @@ class App extends Component {
     return !isExistContact;
   };
 
-  handleDeleteContact = contactId => {
-    this.setState(({ contacts }) => ({
-      contacts: contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
+  // handleDeleteContact = contactId => {
+  //   this.setState(({ contacts }) => ({
+  //     contacts: contacts.filter(contact => contact.id !== contactId),
+  //   }));
+  // };
 
-  handleChangeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
+  // handleChangeFilter = e => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
 
-  getFilteredContact = () => {
-    const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-  };
+  // getFilteredContact = () => {
+  //   const { contacts, filter } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter),
+  //   );
+  // };
 
   render() {
     // const { filter } = this.state;
@@ -65,17 +65,18 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        {/* <ContactForm
-          onAdd={this.handleAddContact}
-          onCheckUniqueContact={this.handleCheckUniqueContact}
-        /> */}
+        <ContactForm
+        // onAdd={this.handleAddContact}
+        // onCheckUniqueContact={this.handleCheckUniqueContact}
+        />
 
         <h2>Contacts</h2>
-        {/* <Filter filter={filter} onchangeFilter={this.handleChangeFilter} /> */}
+        <Filter />
         {/* <ContactList
           contacts={filterContacts}
           ondeleteContact={this.handleDeleteContact}
         /> */}
+        <ContactList />
       </div>
     );
   }

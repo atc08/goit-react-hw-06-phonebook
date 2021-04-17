@@ -1,3 +1,9 @@
 .ContactList {
   width: 400px;
 }
+
+.ContactListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

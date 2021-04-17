@@ -26,21 +26,21 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     const { onAdd } = this.props;
 
-    const isValidatedForm = this.validatedForm();
-    if (!isValidatedForm) return;
+    // const isValidatedForm = this.validatedForm();
+    // if (!isValidatedForm) return;
     onAdd({ id: uuidv4(), name, number });
     this.resetForm();
   };
 
-  validatedForm = () => {
-    const { name, number } = this.state;
-    const { onCheckUniqueContact } = this.props;
-    if (!name || !number) {
-      alert('Please enter name and phone number');
-      return false;
-    }
-    return onCheckUniqueContact(number);
-  };
+  // validatedForm = () => {
+  //   const { name, number } = this.state;
+  //   const { onCheckUniqueContact } = this.props;
+  //   if (!name || !number) {
+  //     alert('Please enter name and phone number');
+  //     return false;
+  //   }
+  //   return onCheckUniqueContact(number);
+  // };
 
   resetForm = () => {
     this.setState(INITIAL_STATE);
@@ -78,7 +78,8 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onAdd: addedContact => dispatch(phonebookActions.addContact(addedContact)),
+  onAdd: ({ name, number }) =>
+    dispatch(phonebookActions.addContact({ name, number })),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);
