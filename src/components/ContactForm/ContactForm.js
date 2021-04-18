@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
+import { addContact } from '../../redux/phonebook/phonebook-actions';
 import { v4 as uuidv4 } from 'uuid';
-
-const INITIAL_STATE = {
-  id: '',
-  name: '',
-  number: '',
-};
+import s from './ContactForm.module.css';
 
 class ContactForm extends Component {
-  state = INITIAL_STATE;
+  state = {
+    id: '',
+    name: '',
+    number: '',
+  };
 
   handleInputsChange = ({ target }) => {
     const { name, value } = target;
@@ -26,60 +25,55 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     const { onAdd } = this.props;
 
-    // const isValidatedForm = this.validatedForm();
-    // if (!isValidatedForm) return;
-    onAdd({ id: uuidv4(), name, number });
-    this.resetForm();
+    if (name && number) {
+      onAdd({ id: uuidv4(), name, number });
+      this.resetForm();
+    }
   };
 
-  // validatedForm = () => {
-  //   const { name, number } = this.state;
-  //   const { onCheckUniqueContact } = this.props;
-  //   if (!name || !number) {
-  //     alert('Please enter name and phone number');
-  //     return false;
-  //   }
-  //   return onCheckUniqueContact(number);
-  // };
-
   resetForm = () => {
-    this.setState(INITIAL_STATE);
+    this.setState({ name: '', number: '' });
   };
 
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={name}
-            placeholder="Enter name"
-            onChange={this.handleInputsChange}
-          ></input>
-        </label>
-        <label>
-          Phone number
-          <input
-            type="tel"
-            name="number"
-            value={number}
-            placeholder="Enter phone number"
-            onChange={this.handleInputsChange}
-          ></input>
-        </label>
+      <div className={s.FormContainer}>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <p className={s.InputTitle}>Name</p>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              placeholder="Enter name"
+              onChange={this.handleInputsChange}
+              className={s.InputField}
+            ></input>
+          </label>
+          <label>
+            <p className={s.InputTitle}>Phone number</p>
+            <input
+              type="tel"
+              name="number"
+              value={number}
+              placeholder="Enter phone number"
+              onChange={this.handleInputsChange}
+              className={s.InputField}
+            ></input>
+          </label>
 
-        <button type="submit">Add contact</button>
-      </form>
+          <button type="submit" className={s.InputButton}>
+            Add contact
+          </button>
+        </form>
+      </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onAdd: ({ name, number }) =>
-    dispatch(phonebookActions.addContact({ name, number })),
+  onAdd: ({ name, number }) => dispatch(addContact({ name, number })),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

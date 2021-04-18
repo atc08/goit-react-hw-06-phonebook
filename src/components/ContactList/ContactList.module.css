@@ -4,6 +4,37 @@
 
 .ContactListItem {
   display: flex;
+  min-height: 40px;
   align-items: center;
   justify-content: space-between;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border-radius: 18px;
+}
+
+.ContactListItem:nth-child(odd) {
+  background-color: lightsalmon;
+}
+
+.ContactListItem:nth-child(even) {
+  background-color: darkorchid;
+}
+
+.ContactListItemText {
+  width: 280px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.ContactListItemButton {
+  width: 70px;
+  height: 28px;
+  border-radius: 18px;
+  border: none;
+  color: rgb(245, 245, 245);
+  background-color: rgb(0, 206, 209);
+  outline: none;
+  cursor: pointer;
 }

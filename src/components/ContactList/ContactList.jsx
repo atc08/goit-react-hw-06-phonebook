@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
-import ContactListItem from '../ContactListItem';
+import ContactListItem from './ContactListItem';
 import s from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
@@ -15,7 +13,7 @@ const ContactList = ({ contacts, ondeleteContact }) => {
             id={id}
             name={name}
             number={number}
-            ondeleteContact={() => ondeleteContact(id)}
+            ondeleteContact={ondeleteContact}
           />
         </li>
       ))}
@@ -34,20 +32,4 @@ ContactList.propTypes = {
   ondeleteContact: PropTypes.func,
 };
 
-const getFilteredContact = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-  return allContacts.filter(
-    contact => console.log(contact.name),
-    // contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ phonebook: { contacts, filter } }) => ({
-  contacts: getFilteredContact(contacts, filter),
-});
-
-const mapDispatchToProps = dispatch => ({
-  ondeleteContact: id => dispatch(phonebookActions.deleteContact(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default ContactList;
